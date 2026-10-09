@@ -1,9 +1,9 @@
 {
-  "extends": "@orbit/config/tsconfig.base.json",
+  "extends": "./packages/config/tsconfig.base.json",
   "compilerOptions": {
     "composite": true,
     "noEmit": true
   },
   "files": [],
-  "references": []
+  "references": [{ "path": "./packages/shared" }]
 }

@@ -3,6 +3,9 @@
 // Requires: eslint, @typescript-eslint/parser, @typescript-eslint/eslint-plugin,
 // eslint-plugin-react, eslint-plugin-react-hooks
 
+import tseslint from '@typescript-eslint/eslint-plugin';
+import tsparser from '@typescript-eslint/parser';
+
 export default [
   {
     ignores: [
@@ -20,7 +23,10 @@ export default [
     languageOptions: {
       ecmaVersion: 'latest',
       sourceType: 'module',
+      parser: tsparser,
       parserOptions: {
+        ecmaVersion: 'latest',
+        sourceType: 'module',
         ecmaFeatures: {
           jsx: true,
         },
@@ -49,6 +55,9 @@ export default [
         navigator: 'readonly',
       },
     },
+    plugins: {
+      '@typescript-eslint': tseslint,
+    },
     rules: {
       'no-console': [
         'warn',
@@ -56,7 +65,8 @@ export default [
           allow: ['warn', 'error', 'info'],
         },
       ],
-      'no-unused-vars': [
+      'no-unused-vars': 'off',
+      '@typescript-eslint/no-unused-vars': [
         'error',
         {
           argsIgnorePattern: '^_',
