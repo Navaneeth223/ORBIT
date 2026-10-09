@@ -1,0 +1,12 @@
+{
+  "app": {
+    "name": "ORBIT",
+    "tagline": "Two worlds. One orbit."
+  },
+  "splash": {
+    "loading": "Finding your person…"
+  },
+  "nav": {
+    "home": "Home"
+  }
+}

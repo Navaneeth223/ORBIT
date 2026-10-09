@@ -2,7 +2,7 @@
   "id": "FEAT-004",
   "type": "feat",
   "description": "Create apps/web: Vite + React 18 PWA with Tailwind CSS, design tokens as CSS variables, i18next (en/th), React Router, PWA manifest, minimal service worker, and three routes (/, /home, /health-check). Includes one passing Vitest test.",
-  "status": "pending",
+  "status": "completed",
   "steps": [
     "Create apps/web/ directory and initialize with `pnpm create vite@latest . --template react-ts` inside apps/web/",
     "Update apps/web/package.json: name @orbit/web, add dependencies: react-router-dom, i18next, react-i18next, tailwindcss, autoprefixer, postcss, @vitejs/plugin-react, vite-plugin-pwa (or @vite-pwa/plugin), vitest, @testing-library/react, @testing-library/jest-dom, jsdom; add workspace dependency: @orbit/shared: workspace:*",
@@ -46,5 +46,5 @@
     "Check apps/web/dist/ contains index.html, assets/, manifest.json"
   ],
   "blocked_reason": null,
-  "findings": ""
+  "findings": "@orbit/web successfully created as Vite + React 18 PWA with all required features. Design tokens implemented as CSS variables in src/styles/tokens.css with exact specifications (backgrounds, ink colors, brand colors for Navi #7c6af7 and Raya #f76aac, typography, spacing, radius) plus light theme overrides via @media prefers-color-scheme. Tailwind CSS configured to use design tokens. i18next initialized with en/th locales (Thai translations marked as _meta.reviewed: false for user review). Three routes implemented: / (Splash page with app name and tagline), /home (placeholder), /health-check (fetches from API). PWA manifest generated with correct theme_color, icons (192x192.png and 512x512.png placeholders created), and service worker configured via vite-plugin-pwa. Two passing Vitest tests (smoke test + @orbit/shared import validation). Build produces optimized dist/ with manifest.webmanifest, service worker, and all assets. Dev server runs on localhost:5173. All acceptance criteria met. Note: Test files excluded from TypeScript compilation via tsconfig.json to avoid build errors. Zod added as direct dependency since HealthCheck page imports it for schema validation."
 }

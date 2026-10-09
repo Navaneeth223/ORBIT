@@ -1,0 +1,15 @@
+{
+  "_meta": {
+    "reviewed": false
+  },
+  "app": {
+    "name": "ORBIT",
+    "tagline": "สองโลก วงโคจรเดียว"
+  },
+  "splash": {
+    "loading": "กำลังค้นหาคนของคุณ…"
+  },
+  "nav": {
+    "home": "หน้าแรก"
+  }
+}
