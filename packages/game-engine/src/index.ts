@@ -47,6 +47,7 @@ export interface Clock {
  */
 export interface GameEngine {
   // Future: scoring, reveal logic, question selection, etc.
+  _placeholder?: never; // Prevents empty interface error
 }
 
 /**

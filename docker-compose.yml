@@ -1,0 +1,63 @@
+version: '3.8'
+
+services:
+  mongo:
+    image: mongo:7
+    container_name: orbit-mongo
+    restart: unless-stopped
+    ports:
+      - '27017:27017'
+    volumes:
+      - orbit-mongo-data:/data/db
+    healthcheck:
+      test: ['CMD', 'mongosh', '--eval', "db.adminCommand('ping')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    environment:
+      MONGO_INITDB_DATABASE: orbit
+
+  redis:
+    image: redis:7-alpine
+    container_name: orbit-redis
+    restart: unless-stopped
+    ports:
+      - '6379:6379'
+    volumes:
+      - orbit-redis-data:/data
+    healthcheck:
+      test: ['CMD', 'redis-cli', 'ping']
+      interval: 10s
+      timeout: 3s
+      retries: 5
+      start_period: 5s
+    command: redis-server --appendonly yes
+
+  mailhog:
+    image: mailhog/mailhog:latest
+    container_name: orbit-mailhog
+    restart: unless-stopped
+    ports:
+      - '1025:1025' # SMTP
+      - '8025:8025' # Web UI
+    healthcheck:
+      test:
+        [
+          'CMD',
+          'wget',
+          '--quiet',
+          '--tries=1',
+          '--spider',
+          'http://localhost:8025',
+        ]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+      start_period: 5s
+
+volumes:
+  orbit-mongo-data:
+    driver: local
+  orbit-redis-data:
+    driver: local

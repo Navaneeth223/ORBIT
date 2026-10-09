@@ -1,0 +1,11 @@
+# Feature Documentation
+
+This directory will contain documentation for each major feature implemented in ORBIT.
+
+Each feature should have its own markdown file with:
+- Overview and user-facing description
+- Technical implementation details
+- API endpoints (if applicable)
+- UI components (if applicable)
+- Edge cases and error handling
+- Testing strategy
