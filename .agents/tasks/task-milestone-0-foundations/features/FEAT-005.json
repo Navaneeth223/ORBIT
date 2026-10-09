@@ -2,7 +2,7 @@
   "id": "FEAT-005",
   "type": "feat",
   "description": "Create apps/api: Fastify 4 TypeScript server with /health endpoint, Zod environment variable validation, Pino structured logging with secret redaction, MongoDB connection via Mongoose, CORS, global error handler, and one passing Vitest test. Server starts successfully and connects to MongoDB.",
-  "status": "pending",
+  "status": "completed",
   "steps": [
     "Create apps/api/package.json with name @orbit/api, type: module, main: ./dist/index.js, scripts: dev (tsx watch src/index.ts), build (tsc), test (vitest), start (node dist/index.js); dependencies: fastify, @fastify/cors, @fastify/cookie, mongoose, pino, pino-pretty, zod, dotenv; devDependencies: tsx, typescript, vitest, @types/node; workspace dependency: @orbit/shared: workspace:*",
     "Create apps/api/tsconfig.json extending ../../packages/config/tsconfig.base.json with compilerOptions: outDir ./dist, rootDir ./src, module: NodeNext, moduleResolution: NodeNext",
@@ -42,5 +42,5 @@
     "Stop server, run `node apps/api/dist/index.js` with env vars - server starts"
   ],
   "blocked_reason": null,
-  "findings": ""
+  "findings": "Successfully created @orbit/api with Fastify 4, TypeScript, and all required features. Key implementation notes:\n1. Environment validation: Zod schema in src/config/env.ts validates all required env vars on startup, fails fast with clear error messages.\n2. Pino logger: Configured with secret redaction for JWT and cookie secrets, pretty printing in development.\n3. MongoDB connection: Mongoose connection with event handlers (error, disconnected, reconnected) and graceful shutdown.\n4. CORS: Configured for localhost:5173 web app origin with credentials support.\n5. Error handler: Global error handler logs errors with context and returns standardized JSON responses.\n6. /health endpoint: Returns { status: 'ok', timestamp: ISO8601, version: string } validated with HealthResponseSchema.\n7. Tests: One passing Vitest test verifying /health endpoint returns 200 with correct shape.\n8. Build: TypeScript compilation successful with NodeNext module resolution and .js extensions in import paths (required for ESM).\n9. Fixed shared package exports to use .js extensions for ESM compatibility.\n10. MongoDB service is running locally on Windows (verified). Docker not available but not needed for MongoDB.\n\nAll acceptance criteria met. Build and tests pass successfully."
 }
