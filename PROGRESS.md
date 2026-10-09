@@ -4,7 +4,9 @@
 
 **Goal**: A running monorepo with CI and a hello-world deployed.
 
-**Status**: In Progress
+**Status**: Completed
+
+**Completion Date**: 2025-01-19
 
 ---
 
@@ -57,15 +59,15 @@ The document is comprehensive and internally consistent. One clarification assum
 
 ## Milestone 0 Tasks
 
-- [ ] Create monorepo structure (pnpm + Turborepo)
-- [ ] Setup TypeScript strict, ESLint, Prettier, Husky, commitlint
-- [ ] Vite React app with Tailwind, router, i18n (en/th), theme tokens, PWA manifest
-- [ ] Fastify API with /health, config validation, logging
-- [ ] MongoDB connection, Docker Compose for local dev
-- [ ] GitHub Actions CI (lint, type-check, test, build)
-- [ ] Deploy instructions for staging (Singapore region)
-- [ ] README with setup steps, .env.example
-- [ ] All tests passing
+- [x] Create monorepo structure (pnpm + Turborepo)
+- [x] Setup TypeScript strict, ESLint, Prettier, Husky, commitlint
+- [x] Vite React app with Tailwind, router, i18n (en/th), theme tokens, PWA manifest
+- [x] Fastify API with /health, config validation, logging
+- [x] MongoDB connection, Docker Compose for local dev
+- [x] GitHub Actions CI (lint, type-check, test, build)
+- [x] Deploy instructions for staging (Singapore region)
+- [x] README with setup steps, .env.example
+- [x] All tests passing
 
 ---
 

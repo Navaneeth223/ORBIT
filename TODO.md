@@ -4,13 +4,13 @@
 
 ---
 
-## Current Sprint: Milestone 0
+## Current Sprint: Milestone 1
 
 ### In Progress
 
-- [ ] Complete monorepo setup
-- [ ] Configure CI pipeline
-- [ ] Deploy hello-world to staging
+- [ ] Authentication system
+- [ ] Couple pairing logic
+- [ ] Presence tracking
 
 ### Blocked
 
@@ -18,26 +18,26 @@ None
 
 ---
 
-## Milestone 0 Checklist
+## Milestone 0 Checklist ✅ COMPLETED
 
-- [ ] Monorepo structure (pnpm workspaces + Turborepo)
-- [ ] TypeScript strict mode everywhere
-- [ ] ESLint + Prettier + Husky pre-commit hooks
-- [ ] commitlint for conventional commits
-- [ ] Vite React app with basic routing
-- [ ] Tailwind CSS with design tokens
-- [ ] i18next scaffold (en/th)
-- [ ] PWA manifest + minimal service worker
-- [ ] Fastify API with /health endpoint
-- [ ] Zod config validation
-- [ ] Pino structured logging
-- [ ] MongoDB connection
-- [ ] Docker Compose (MongoDB + Redis + MailHog)
-- [ ] GitHub Actions: lint, type-check, test, build
-- [ ] Staging deployment instructions (Singapore)
-- [ ] README.md with setup steps
-- [ ] .env.example with all variables documented
-- [ ] All tests passing
+- [x] Monorepo structure (pnpm workspaces + Turborepo)
+- [x] TypeScript strict mode everywhere
+- [x] ESLint + Prettier + Husky pre-commit hooks
+- [x] commitlint for conventional commits
+- [x] Vite React app with basic routing
+- [x] Tailwind CSS with design tokens
+- [x] i18next scaffold (en/th)
+- [x] PWA manifest + minimal service worker
+- [x] Fastify API with /health endpoint
+- [x] Zod config validation
+- [x] Pino structured logging
+- [x] MongoDB connection
+- [x] Docker Compose (MongoDB + Redis + MailHog)
+- [x] GitHub Actions: lint, type-check, test, build
+- [x] Staging deployment instructions (Singapore)
+- [x] README.md with setup steps
+- [x] .env.example with all variables documented
+- [x] All tests passing
 
 ---
 
@@ -128,4 +128,4 @@ None yet (new project)
 
 ---
 
-_Updated: 2026-10-09_
+_Updated: 2025-01-19_
