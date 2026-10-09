@@ -1,0 +1,46 @@
+{
+  "id": "FEAT-005",
+  "type": "feat",
+  "description": "Create apps/api: Fastify 4 TypeScript server with /health endpoint, Zod environment variable validation, Pino structured logging with secret redaction, MongoDB connection via Mongoose, CORS, global error handler, and one passing Vitest test. Server starts successfully and connects to MongoDB.",
+  "status": "pending",
+  "steps": [
+    "Create apps/api/package.json with name @orbit/api, type: module, main: ./dist/index.js, scripts: dev (tsx watch src/index.ts), build (tsc), test (vitest), start (node dist/index.js); dependencies: fastify, @fastify/cors, @fastify/cookie, mongoose, pino, pino-pretty, zod, dotenv; devDependencies: tsx, typescript, vitest, @types/node; workspace dependency: @orbit/shared: workspace:*",
+    "Create apps/api/tsconfig.json extending ../../packages/config/tsconfig.base.json with compilerOptions: outDir ./dist, rootDir ./src, module: NodeNext, moduleResolution: NodeNext",
+    "Create apps/api/.env.example with all required variables: NODE_ENV=development, PORT=4000, PUBLIC_WEB_ORIGIN=http://localhost:5173, MONGODB_URI=mongodb://localhost:27017/orbit, REDIS_URL=redis://localhost:6379, JWT_ACCESS_SECRET=change-me-in-production, JWT_REFRESH_SECRET=change-me-in-production, COOKIE_SECRET=change-me-in-production, MAX_USERS=2",
+    "Create apps/api/src/config/env.ts with Zod schema validating all environment variables (z.object with z.string(), z.number().int(), z.enum(['development', 'production', 'test'])); parse process.env and export typed config object",
+    "Create apps/api/src/utils/logger.ts initializing Pino with redact: ['config.jwtAccessSecret', 'config.jwtRefreshSecret', 'config.cookieSecret'], prettyPrint in development",
+    "Create apps/api/src/db/mongoose.ts with connectDB async function: mongoose.connect(config.mongodbUri), log success/error, handle connection events",
+    "Create apps/api/src/routes/health.ts defining GET /health route handler returning { status: 'ok', timestamp: new Date().toISOString(), version: process.env.npm_package_version || '0.1.0' }; validate response with HealthResponseSchema from @orbit/shared",
+    "Create apps/api/src/plugins/cors.ts registering @fastify/cors with origin: config.publicWebOrigin, credentials: true",
+    "Create apps/api/src/plugins/error-handler.ts with global error handler logging errors and returning standardized JSON error responses",
+    "Create apps/api/src/app.ts creating Fastify instance with logger, registering plugins (cors, error-handler), registering routes (health), exporting buildApp function",
+    "Create apps/api/src/index.ts importing config, logger, connectDB, buildApp; call connectDB(), build app, listen on config.port, log server ready message",
+    "Create apps/api/vitest.config.ts with test environment: node, test glob patterns",
+    "Create apps/api/src/__tests__/health.test.ts testing GET /health returns 200 with correct shape matching HealthResponseSchema",
+    "Run `pnpm --filter @orbit/api build` to verify TypeScript compilation",
+    "Run `pnpm --filter @orbit/api test` to verify tests pass"
+  ],
+  "acceptance_criteria": [
+    "Environment variables are validated on startup; missing required vars cause process to exit with clear error",
+    "Server starts successfully on PORT 4000",
+    "GET /health returns 200 with { status: 'ok', timestamp: ISO8601 string, version: string }",
+    "CORS is configured for localhost:5173",
+    "MongoDB connection succeeds and logs success message",
+    "Pino logger redacts secrets from logs",
+    "Global error handler catches unhandled errors and returns JSON",
+    "At least one Vitest test passes",
+    "TypeScript compilation produces runnable dist/index.js"
+  ],
+  "verification": [
+    "Start MongoDB with Docker Compose (see FEAT-006) or local installation",
+    "Run `pnpm --filter @orbit/api dev` and verify server starts without errors",
+    "Use curl or browser to GET http://localhost:4000/health - returns 200 with correct JSON",
+    "Check terminal logs for MongoDB connection success message",
+    "Verify logs do NOT contain JWT_ACCESS_SECRET or other secrets",
+    "Run `pnpm --filter @orbit/api test` - all tests pass",
+    "Run `pnpm --filter @orbit/api build` - compiles successfully",
+    "Stop server, run `node apps/api/dist/index.js` with env vars - server starts"
+  ],
+  "blocked_reason": null,
+  "findings": ""
+}

@@ -1,0 +1,50 @@
+{
+  "id": "FEAT-004",
+  "type": "feat",
+  "description": "Create apps/web: Vite + React 18 PWA with Tailwind CSS, design tokens as CSS variables, i18next (en/th), React Router, PWA manifest, minimal service worker, and three routes (/, /home, /health-check). Includes one passing Vitest test.",
+  "status": "pending",
+  "steps": [
+    "Create apps/web/ directory and initialize with `pnpm create vite@latest . --template react-ts` inside apps/web/",
+    "Update apps/web/package.json: name @orbit/web, add dependencies: react-router-dom, i18next, react-i18next, tailwindcss, autoprefixer, postcss, @vitejs/plugin-react, vite-plugin-pwa (or @vite-pwa/plugin), vitest, @testing-library/react, @testing-library/jest-dom, jsdom; add workspace dependency: @orbit/shared: workspace:*",
+    "Create apps/web/tsconfig.json extending ../../packages/config/tsconfig.base.json with jsx: react-jsx, lib: [DOM, DOM.Iterable, ESNext]",
+    "Create apps/web/tailwind.config.js with content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'], theme extending design tokens as Tailwind utilities",
+    "Create apps/web/postcss.config.js with tailwindcss and autoprefixer plugins",
+    "Create apps/web/vite.config.ts with @vitejs/plugin-react and vite-plugin-pwa configured; PWA manifest: { name: 'ORBIT', short_name: 'ORBIT', theme_color: '#7c6af7', icons: [192x192, 512x512 placeholders] }; env vars: VITE_API_BASE_URL, VITE_WS_URL, VITE_APP_NAME",
+    "Create apps/web/.env.example with VITE_API_BASE_URL=http://localhost:4000, VITE_WS_URL=ws://localhost:4000, VITE_APP_NAME=ORBIT",
+    "Create apps/web/src/styles/tokens.css with exact CSS variables from spec (backgrounds, ink, brand colors for Navi/Raya, semantic colors, typography, spacing, radius); include @media (prefers-color-scheme: light) overrides",
+    "Update apps/web/src/index.css to @import './styles/tokens.css' and apply base Tailwind styles with design tokens",
+    "Create apps/web/src/i18n/locales/en.json with keys: app.name, app.tagline, splash.loading, nav.home",
+    "Create apps/web/src/i18n/locales/th.json with Thai translations and _meta.reviewed: false",
+    "Create apps/web/src/i18n/config.ts initializing i18next with en/th resources, fallbackLng: 'en', detection from localStorage and navigator",
+    "Create apps/web/src/App.tsx with React Router setup: BrowserRouter with routes for /, /home, /health-check",
+    "Create apps/web/src/pages/Splash.tsx displaying app.name and app.tagline from i18n, centered on screen with design tokens",
+    "Create apps/web/src/pages/Home.tsx placeholder with nav.home heading",
+    "Create apps/web/src/pages/HealthCheck.tsx calling GET /health from API and displaying status",
+    "Update apps/web/src/main.tsx to import i18n config, initialize i18n, render App with Suspense fallback",
+    "Create apps/web/vitest.config.ts with jsdom environment and test glob patterns",
+    "Create apps/web/src/__tests__/App.test.tsx verifying Splash page renders with correct tagline",
+    "Create apps/web/public/icons/ directory with placeholder 192x192.png and 512x512.png icons (can be simple colored squares for now)",
+    "Run `pnpm --filter @orbit/web build` to verify Vite build succeeds",
+    "Run `pnpm --filter @orbit/web test` to verify tests pass"
+  ],
+  "acceptance_criteria": [
+    "Vite dev server starts successfully on localhost:5173",
+    "Splash page (/) displays 'ORBIT' and 'Two worlds. One orbit.' in English",
+    "Language can be switched to Thai and displays correct translations",
+    "Tailwind CSS applies design tokens correctly (dark theme by default)",
+    "PWA manifest.json is generated with correct theme_color and icons",
+    "All three routes render without errors",
+    "At least one Vitest test passes",
+    "Build produces dist/ directory with optimized assets"
+  ],
+  "verification": [
+    "Run `pnpm --filter @orbit/web dev` and manually visit http://localhost:5173 - Splash page renders",
+    "Open DevTools and verify no console errors",
+    "Check Application > Manifest in DevTools - manifest.json is present with correct values",
+    "Run `pnpm --filter @orbit/web test` - all tests pass",
+    "Run `pnpm --filter @orbit/web build` - build succeeds",
+    "Check apps/web/dist/ contains index.html, assets/, manifest.json"
+  ],
+  "blocked_reason": null,
+  "findings": ""
+}

@@ -1,0 +1,21 @@
+{
+  "project_type": "pnpm monorepo with Turborepo: Vite+React PWA + Fastify TypeScript API + shared packages",
+  "language": "TypeScript (strict mode)",
+  "build_system": "pnpm workspaces with Turborepo for task orchestration; Vite for web app; tsc for API and packages",
+  "test_framework": "Vitest for all packages (unit tests); playwright or similar for e2e (not in Milestone 0)",
+  "build_command": "pnpm build (runs turbo build across all packages)",
+  "test_command": "pnpm test (runs turbo test across all packages)",
+  "verification_instructions": "After each feature: (1) pnpm install to update lockfile, (2) pnpm lint, (3) pnpm type-check, (4) pnpm test, (5) pnpm build, (6) manually verify web app at localhost:5173 and API at localhost:4000/health",
+  "snapshot_or_generated_files": "None at this stage; future milestones may include generated API clients or Prisma schemas",
+  "environment_constraints": "Windows development environment (PowerShell); use double quotes for paths with spaces; Git hooks via Husky must work on Windows; Docker Compose for MongoDB/Redis/MailHog",
+  "contribution_requirements": "Conventional Commits enforced via commitlint; pre-commit hooks run lint-staged (eslint, prettier); TypeScript strict mode with noUncheckedIndexedAccess; no console.log in production code; all user-facing strings in i18n files; design tokens as CSS variables",
+  "key_patterns": "Emotional warmth in copy; absolute privacy (max 2 users); time-zone aware (Asia/Kolkata and Asia/Bangkok); dark-first design; English + Thai from day one; Zod schemas shared between client/server; injectable dependencies for testability",
+  "relevant_files": [
+    "DECISIONS.md (architectural decisions log)",
+    "PROGRESS.md (milestone tracker)",
+    "TODO.md (task checklist)",
+    "CHANGELOG.md (version history)",
+    "docs/runbooks/ (deployment procedures - empty now)"
+  ],
+  "directory_structure": "apps/ contains web (Vite+React PWA) and api (Fastify); packages/ contains shared (types/schemas/constants), content (seed data), game-engine (pure logic), config (ESLint/TS/Prettier presets); docs/ for features/, adr/, runbooks/; .github/workflows/ for CI"
+}

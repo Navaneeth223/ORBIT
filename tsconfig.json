@@ -1,0 +1,9 @@
+{
+  "extends": "@orbit/config/tsconfig.base.json",
+  "compilerOptions": {
+    "composite": true,
+    "noEmit": true
+  },
+  "files": [],
+  "references": []
+}

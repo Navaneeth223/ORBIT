@@ -1,0 +1,33 @@
+{
+  "id": "FEAT-002",
+  "type": "feat",
+  "description": "Create packages/shared with APP_NAME constant, Zod schemas (HealthResponse), and common TypeScript types. This package is imported by both web and API for type safety and validation.",
+  "status": "pending",
+  "steps": [
+    "Create packages/shared/package.json with name @orbit/shared, type: module, main: ./dist/index.js, exports: ./dist/index.js, scripts: build (tsc), test (vitest), devDependencies: typescript, vitest, zod",
+    "Create packages/shared/tsconfig.json extending ../../packages/config/tsconfig.base.json with compilerOptions: outDir ./dist, rootDir ./src, declaration: true",
+    "Create packages/shared/src/constants.ts exporting `export const APP_NAME = 'ORBIT' as const;`",
+    "Create packages/shared/src/schemas/health.schema.ts with Zod schema: `export const HealthResponseSchema = z.object({ status: z.literal('ok'), timestamp: z.string(), version: z.string() }); export type HealthResponse = z.infer<typeof HealthResponseSchema>;`",
+    "Create packages/shared/src/types/index.ts with common TypeScript utility types (e.g., `export type Brand<K, T> = K & { __brand: T };`)",
+    "Create packages/shared/src/index.ts exporting all from constants, schemas/health.schema, and types",
+    "Create packages/shared/vitest.config.ts with test configuration",
+    "Create packages/shared/src/__tests__/constants.test.ts verifying APP_NAME === 'ORBIT'",
+    "Create packages/shared/src/__tests__/schemas.test.ts verifying HealthResponseSchema parses valid input and rejects invalid",
+    "Run `pnpm --filter @orbit/shared build` to compile TypeScript",
+    "Run `pnpm --filter @orbit/shared test` to verify tests pass"
+  ],
+  "acceptance_criteria": [
+    "APP_NAME constant is exported and equals 'ORBIT'",
+    "HealthResponseSchema correctly validates { status: 'ok', timestamp: string, version: string }",
+    "TypeScript compilation produces .d.ts declaration files",
+    "All tests pass",
+    "Package can be imported by other workspace packages using workspace:* protocol"
+  ],
+  "verification": [
+    "Run `pnpm --filter @orbit/shared build` and confirm dist/ directory is created with index.js and index.d.ts",
+    "Run `pnpm --filter @orbit/shared test` and confirm all tests pass",
+    "Run `pnpm type-check` from root and confirm no errors"
+  ],
+  "blocked_reason": null,
+  "findings": ""
+}

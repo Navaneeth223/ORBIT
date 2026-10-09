@@ -1,0 +1,14 @@
+{
+  "task_id": "task-milestone-0-foundations",
+  "task_description": "Create monorepo structure with pnpm workspaces + Turborepo, React PWA, Fastify API, shared packages, design tokens, CI/CD, and Docker Compose for local development",
+  "status": "pending",
+  "feature_order": [
+    "FEAT-001",
+    "FEAT-002",
+    "FEAT-003",
+    "FEAT-004",
+    "FEAT-005",
+    "FEAT-006"
+  ],
+  "blocked_reason": null
+}

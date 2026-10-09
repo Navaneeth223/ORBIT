@@ -1,0 +1,33 @@
+{
+  "id": "FEAT-003",
+  "type": "feat",
+  "description": "Create packages/content (seed data stub) and packages/game-engine (pure logic stub) as placeholder packages. These will be populated in future milestones but need to exist in the monorepo structure now.",
+  "status": "pending",
+  "steps": [
+    "Create packages/content/package.json with name @orbit/content, type: module, main: ./dist/index.js, scripts: build (tsc), test (vitest)",
+    "Create packages/content/tsconfig.json extending ../../packages/config/tsconfig.base.json",
+    "Create packages/content/README.md explaining versioned seed-data approach: daily questions, letter stationery, companion species, game content will live here as typed JSON with schemas",
+    "Create packages/content/src/index.ts with comment: '// Future: export daily questions, stationery, etc. Versioned seed data lives here.'",
+    "Create packages/content/src/__tests__/index.test.ts with basic import test verifying package loads without error",
+    "Create packages/game-engine/package.json with name @orbit/game-engine, type: module, main: ./dist/index.js, scripts: build (tsc), test (vitest)",
+    "Create packages/game-engine/tsconfig.json extending ../../packages/config/tsconfig.base.json",
+    "Create packages/game-engine/README.md with GameEngine interface contract: deterministic pure functions, injectable clock (never Date.now()), no side effects, all game logic testable in isolation",
+    "Create packages/game-engine/src/index.ts with placeholder: `export interface GameEngine { /* Future: scoring, reveal gating, etc. */ }` and comment explaining design principles",
+    "Create packages/game-engine/src/__tests__/index.test.ts with basic import test verifying GameEngine interface is exported",
+    "Run `pnpm --filter @orbit/content build && pnpm --filter @orbit/game-engine build`",
+    "Run `pnpm --filter @orbit/content test && pnpm --filter @orbit/game-engine test`"
+  ],
+  "acceptance_criteria": [
+    "Both packages build successfully with TypeScript",
+    "Both packages have passing tests",
+    "README files clearly document the intended purpose and design principles",
+    "Packages are importable by other workspace packages"
+  ],
+  "verification": [
+    "Run `pnpm --filter @orbit/content build` and `pnpm --filter @orbit/game-engine build` - both succeed",
+    "Run `pnpm --filter @orbit/content test` and `pnpm --filter @orbit/game-engine test` - all tests pass",
+    "Run `pnpm build` from root and confirm both packages compile"
+  ],
+  "blocked_reason": null,
+  "findings": ""
+}
